@@ -44,7 +44,7 @@ class Question:
                     f'Incorrect answers in question {qid}: {answers}')
 
 QUESTIONS = {q['id']: Question(q['id'], q['q'], q['a'])
-    for q in yaml.load(Path('questions.yaml').read_text())}
+    for q in yaml.safe_load(Path('questions.yaml').read_text())}
 
 
 def start(update, context):
