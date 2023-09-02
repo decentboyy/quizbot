@@ -115,7 +115,9 @@ def common_message(update, context):
 
 
 def main():
-    storage = PicklePersistence()
+    # Specify a filepath for PicklePersistence
+    filepath = 'data.pickle'
+    storage = PicklePersistence(filename=filepath)
     updater = Updater(token=TOKEN, persistence=storage, use_context=True)
     dp = updater.dispatcher
     dp.add_handler(CommandHandler('start', start))
@@ -125,3 +127,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
