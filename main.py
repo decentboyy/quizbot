@@ -114,8 +114,16 @@ def common_message(update, context):
         context.user_data['quiz']['current_qid'] = None
 
 
+from custom_persistence import CustomPicklePersistence  # Import the custom class
+from telegram.ext import Updater, CommandHandler, MessageHandler
+import logging
+
+# ... (Your existing code)
+
 def main():
-    storage = PicklePersistence()
+    # Specify a filepath for custom PicklePersistence
+    filepath = 'data.pickle'
+    storage = CustomPicklePersistence(filepath)
     updater = Updater(token=TOKEN, persistence=storage, use_context=True)
     dp = updater.dispatcher
     dp.add_handler(CommandHandler('start', start))
@@ -125,5 +133,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+)
 
 
